@@ -9,6 +9,7 @@ class MakeApiCall:
     def get_data(self, api) -> Optional[str]:
         response = requests.get(api)
         if response.status_code == 200:
+            print(f"{response.json()}")
             return response.json()
         else:
             print(

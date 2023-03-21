@@ -12,7 +12,7 @@ class FunnelToCog:
         api_call = MakeApiCall(f"https://steamcommunity.com/market/priceoverview/?appid=730&currency=3&market_hash_name={hash_name}")
         for key in api_call.get_response():
             if key == "lowest_price":
-                return float(api_call.get_response()[key].replace(',','.')[:4]) 
+                return float(api_call.get_response()[key].replace(',','.')[:4].replace('-', '')) 
 
     def reload_excel(self) -> None:
         self.xl = ExcelOfCases('MojeCasky.xlsx')
