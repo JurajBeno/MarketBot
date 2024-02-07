@@ -19,7 +19,7 @@ class CsgoMarketCog(commands.Cog):
     @commands.command(name="csgocases", help="will check prices of items on steam market place of Cases in xlsx file named MojeCasky.xlsx and post embed with all info of every case every given time (in minutes) or every hour syntax: >csgocases <time>")
     async def start_cases(self, ctx: commands.Context, time_in_min: int=60) -> None:
         if self.channel_to_post == ctx.channel.id:
-            await ctx.send(embed=Embed(title="CHANNEL ALREADY ASSIGNED TO IT"))
+            await ctx.send(embed=Embed(title="CHANNEL ALREADY ASSIGNED TO RECIVE UPDATES ON CASES"))
         self.channel_to_post = ctx.channel.id
         self.time_of_case = time_in_min
         await ctx.send(embed=Embed(title="CHANNEL REGISTERED TO RECIVE UPDATES ON CASES", color=Color.green()))

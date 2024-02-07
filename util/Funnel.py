@@ -1,4 +1,5 @@
 import threading
+from typing import Optional
 from util.ExeclOfCases import ExcelOfCases
 from util.MakeApiCall import MakeApiCall
 from util.SteamItem import SteamItem
@@ -8,7 +9,7 @@ class FunnelToCog:
         self.bot = False
         self.xl = ExcelOfCases('MojeCasky.xlsx')
     
-    def call_api(self, hash_name: str, ) -> float:
+    def call_api(self, hash_name: str, ) -> Optional[float]:
         api_call = MakeApiCall(f"https://steamcommunity.com/market/priceoverview/?appid=730&currency=3&market_hash_name={hash_name}")
         for key in api_call.get_response():
             if key == "lowest_price":
@@ -27,7 +28,7 @@ class FunnelToCog:
                          self.xl.get_market_hash_name(item_id))
         
 
-    def check_all_items(self) -> SteamItem: 
+    def check_all_items(self) -> None: 
         threading.Timer(60, self.check_all_items).start()
         for i in range(0, self.xl.get_number_of_rows()):
             item = self.give_item(i)
